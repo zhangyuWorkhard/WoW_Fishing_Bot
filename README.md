@@ -31,3 +31,9 @@
   * The bot utilizes the bottom 3/5 of the active game window to monitor for the bobber. Angle your screen as shown for best results:
   
 ![Camera Angle](https://github.com/raidensan91/WoW_Fishing_Bot/blob/master/var/Camera_Angle.PNG)
+
+#####################################
+1、安装Python 3
+2、运行install.cmd 安装依赖包
+3、按照上面的步骤移动好视角
+4、py -3 main.py 
