@@ -1,3 +1,15 @@
+#####################################
+  
+1、安装Python 3
+  
+2、运行install.cmd 安装依赖包
+  
+3、按照下面的步骤移动好视角
+  
+4、py -3 main.py 
+
+
+
 # WoW_Fishing_Bot
 
 ### Description:
@@ -32,8 +44,4 @@
   
 ![Camera Angle](https://github.com/raidensan91/WoW_Fishing_Bot/blob/master/var/Camera_Angle.PNG)
 
-#####################################
-1、安装Python 3
-2、运行install.cmd 安装依赖包
-3、按照上面的步骤移动好视角
-4、py -3 main.py 
+
