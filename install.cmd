@@ -1,83 +1,83 @@
 @echo off
 
-Rem @éœ€è¦å®‰è£…python3
-echo "==> å¼€å§‹æ£€æµ‹çŽ¯å¢ƒä¾èµ–..."
-echo "==> æµ‹è¯• python3 å‘½ä»¤"
+Rem @ÐèÒª°²×°python3
+echo "==> ¿ªÊ¼¼ì²â»·¾³ÒÀÀµ..."
+echo "==> ²âÊÔ python3 ÃüÁî"
 py -3 --version
 set "err=%errorlevel%"
 if "%err%" == "0" goto install
 if "%err%" == "1" goto install_Python
 :install_Python
-  echo "[ERROR] æœªæ£€æµ‹åˆ°python3 è¯·ä¸‹è½½å®‰è£… https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe"
-  echo ">>> å‡†å¤‡é€€å‡º......"
+  echo "[ERROR] Î´¼ì²âµ½python3 ÇëÏÂÔØ°²×° https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe"
+  echo ">>> ×¼±¸ÍË³ö......"
   Pause
   exit
 
 :error
-  echo "[ERROR] å®‰è£…å¤±è´¥"
-  echo ">>> å‡†å¤‡é€€å‡º......"
+  echo "[ERROR] °²×°Ê§°Ü"
+  echo ">>> ×¼±¸ÍË³ö......"
   Pause
   exit
 
-Rem @é¡ºåºå®‰è£…ä¸‹è®°åŒ…
+Rem @Ë³Ðò°²×°ÏÂ¼Ç°ü
 :install
-  echo "==>python3 æ£€æµ‹æˆåŠŸ å¼€å§‹å®‰è£…ä¾èµ–åŒ…"
+  echo "==>python3 ¼ì²â³É¹¦ ¿ªÊ¼°²×°ÒÀÀµ°ü"
   echo "==>check opencv..."
   py -3 -m pip show opencv_python
   set "err=%errorlevel%"
   if "%err%" == "1" goto install_opencv
-  echo "==>opencv-pythonå·²å®‰è£…"
+  echo "==>opencv-pythonÒÑ°²×°"
 :check_numpy  
   echo "==>check numpy..."
   py -3 -m pip show numpy
   set "err=%errorlevel%"
   if "%err%" == "1" py -3 -m pip install numpy
-  echo "==>numpyå·²å®‰è£…"
+  echo "==>numpyÒÑ°²×°"
 :check_imutils
   echo "==>check imutils..."
   py -3 -m pip show imutils
   set "err=%errorlevel%"
   if "%err%" == "1" py -3 -m pip install imutils
-  echo "==>imutilså·²å®‰è£…"
+  echo "==>imutilsÒÑ°²×°"
 :check_pywin32
   echo "==>check pywin32..."
   py -3 -m pip show pywin32
   set "err=%errorlevel%"
   if "%err%" == "1" py -3 -m pip install pywin32
-  echo "==>pywin32å·²å®‰è£…"
+  echo "==>pywin32ÒÑ°²×°"
 :check_pywinauto
   echo "==>check pywinauto..."
   py -3 -m pip show pywinauto
   set "err=%errorlevel%"
   if "%err%" == "1" py -3 -m pip install pywinauto
-  echo "==>pywinautoå·²å®‰è£…"
+  echo "==>pywinautoÒÑ°²×°"
 :check_psutil
   echo "==>check psutil..."
   py -3 -m pip show psutil
   set "err=%errorlevel%"
   if "%err%" == "1" py -3 -m pip install psutil
-  echo "==>psutilå·²å®‰è£…"
+  echo "==>psutilÒÑ°²×°"
 :check_pillow
   echo "==>check pillow..."
   py -3 -m pip show pillow
   set "err=%errorlevel%"
   if "%err%" == "1" py -3 -m pip install pillow
-  echo "==>pillowå·²å®‰è£…"
-  echo "==>ä¾èµ–åŒ…å®‰è£…å®Œæ¯•"
+  echo "==>pillowÒÑ°²×°"
+  echo "==>ÒÀÀµ°ü°²×°Íê±Ï"
   Pause
   exit
 
-Rem @opencv_pythonåœ¨python3ä¸­éœ€è¦è‡ªå·±ä¸‹è½½åŒ…æ–‡ä»¶åŽå®‰è£…
-Rem @å¦‚æžœå¤±è´¥è¯·è‡ªè¡Œä¸‹è½½åŽå®‰è£…
+Rem @opencv_pythonÔÚpython3ÖÐÐèÒª×Ô¼ºÏÂÔØ°üÎÄ¼þºó°²×°
+Rem @Èç¹ûÊ§°ÜÇë×ÔÐÐÏÂÔØºó°²×°
 :install_opencv
-  echo "==>æœªå®‰è£…opencv-python å¼€å§‹ä¸‹è½½..."
+  echo "==>Î´°²×°opencv-python ¿ªÊ¼ÏÂÔØ..."
   ::if exist %~dp0opencv_python-4.1.0-cp37-cp37m-win_amd64.whl goto cv2_download_done 
   curl -O https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/opencv_python-4.1.0-cp37-cp37m-win_amd64.whl
 :cv2_download_done
-  echo "==>å®‰è£…opencv-python..."
+  echo "==>°²×°opencv-python..."
   py -3 -m pip install opencv_python-4.1.0-cp37-cp37m-win_amd64.whl
   py -3 -m pip show opencv_python
   set "err=%errorlevel%"
   if "%err%" == "1" goto error
-  echo "==>opencv-pythonå·²å®‰è£…"
+  echo "==>opencv-pythonÒÑ°²×°"
   goto :check_numpy

@@ -1,11 +1,12 @@
 import cv2, fishing_util, pywinauto, random, screen_cap, time, wow_hijack
 from datetime import datetime, timedelta
 
-PATH = "D:\\Games\\Blizzard\\World of Warcraft\\Wow.exe"
-FISHING_ENABLED = False
-TRACKBARS = False
+PATH = "D:\\Program Files (x86)\\World of Warcraft\\_retail_\\Wow.exe"
+FISHING_ENABLED = True
+TRACKBARS = False 
 SHOW_VIDEO_FEED = True
 NEW_CAST_THRESHOLD = 20
+USE_SKILL = False
 
 def bobber_screen_coords(bobber_location, app_height, app_position):
     ''' Returns the bobber x,y screen coordinates in a tuple.
@@ -42,10 +43,14 @@ def main():
     # Arbitrary value
     last_bobber_location = (0,0)
     last_cast = datetime.now()
+    if USE_SKILL:
+        last_skill = fishing_util.skill()
+        time.sleep(3)
     while(True):
         try:
             # Retrieve video output and bobber location
             mask, output = screen_cap.generate_window(*adjusted_window)
+            #cv2.imshow('test', mask)
             bobber_location = screen_cap.find_bobber(mask, output)
             if SHOW_VIDEO_FEED:
                 cv2.imshow('FishingBot Feed', output)
@@ -55,6 +60,9 @@ def main():
                 new_cast = fishing_util.check_new_cast(NEW_CAST_THRESHOLD, last_cast,last_bobber_location, bobber_location)
                 if new_cast:
                     print('[+] New cast detected.')
+                    #can't find bobber for a long time
+                    if datetime.now() > (last_cast+timedelta(seconds=25)):
+                        last_cast = fishing_util.cast(coords)
                 else:
                     # Check for variance in Y coords to see if bobber dips
                     upper_threshold = last_bobber_location[1] + 7
@@ -77,9 +85,17 @@ def main():
                                 fishing_util.click(coords)
                                 # Sleep for random amt of time
                                 time.sleep(random.uniform(1.5, 3.3))
+                                if USE_SKILL:
+                                    if datetime.now() > (last_skill+timedelta(seconds=610)):
+                                        last_skill = fishing_util.skill(coords)
+                                        time.sleep(3)
                                 last_cast = fishing_util.cast(coords)
                 # Update last known bobber location
                 last_bobber_location = bobber_location
+            else:
+                #can't find bobber 
+                if datetime.now() > (last_cast+timedelta(seconds=25)):
+                    last_cast = fishing_util.cast(coords)
             # Exit key == 'q'
             if cv2.waitKey(25) & 0xFF == ord('q'):
                 cv2.destroyAllWindows()

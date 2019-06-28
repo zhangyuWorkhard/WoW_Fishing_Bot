@@ -34,7 +34,8 @@ def get_app_pos(app_object):
     ''' Retrieve the app left, top, right, and bottom edge coordinates.
             ARGS:       app_object (pywinauto.Application Object)
             RETURNS:    tuple(LEFT, TOP, RIGHT, BOTTOM) '''
-    position = app_object.WorldOfWarcraft.rectangle()
+    #position = app_object.WorldOfWarcraft.rectangle()
+    position = app_object.魔兽世界.rectangle()
     return position
 
 def press_key(app_object, hotkey):

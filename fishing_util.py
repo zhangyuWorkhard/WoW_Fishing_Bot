@@ -40,3 +40,33 @@ def check_new_cast(new_cast_threshold, last_cast_time, last_coords, current_coor
         if last_x > (new_x + new_cast_threshold) or last_x < (new_x - new_cast_threshold):
             new_cast = True
     return new_cast
+
+def alt_z(coords=None):
+    ''' Clicks the left mouse button at specified coordinates and returns 
+        the time of the click.
+            ARGS:       (optional) coords (tuple (X,Y)) 
+            RETURNS:    timestamp (datetime object) '''
+    timestamp = datetime.now()
+    pywinauto.keyboard.send_keys('%z')
+    print('alt + z')
+    return timestamp
+
+def click2(coords=None):
+    ''' Clicks the left mouse button at specified coordinates and returns 
+        the time of the click.
+            ARGS:       (optional) coords (tuple (X,Y)) 
+            RETURNS:    timestamp (datetime object) '''
+    timestamp = datetime.now()
+    pywinauto.mouse.click(button='left', coords=((coords[0],coords[1]+50)))
+    print(f'Left Click at {coords if coords else (0,0)}')
+    return timestamp
+
+def skill(coords=None):
+    ''' Clicks the left mouse button at specified coordinates and returns 
+        the time of the click.
+            ARGS:       (optional) coords (tuple (X,Y)) 
+            RETURNS:    timestamp (datetime object) '''
+    timestamp = datetime.now()
+    pywinauto.keyboard.send_keys('{F12}')
+    print('-')
+    return timestamp
