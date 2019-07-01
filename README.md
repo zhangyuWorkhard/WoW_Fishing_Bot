@@ -4,9 +4,18 @@
   
 2、运行install.cmd 安装依赖包
   
-3、按照下面的步骤移动好视角
-  
-4、py -3 main.py 
+3、main.py中修改魔兽路径
+
+4、鼠标滚轮键（压下）设置为钓鱼快捷键
+
+5、按照下面的步骤移动好视角
+
+6、py -3 main.py 
+
+ps：某些地图水是透明的，水草等会造成识别的干扰。可以在screen.py中的generate_window函数中调整识别的颜色范围。
+通常将low_range的亮度上限提高可以排除掉水中的杂物。
+例：lower_range = [38,0,100] # H, S, V
+具体颜色调整参考 https://baike.baidu.com/item/HSV/547122
 
 
 
